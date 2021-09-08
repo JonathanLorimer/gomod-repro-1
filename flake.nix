@@ -21,6 +21,8 @@
     in flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system overlays; };
+
+        # This is just to aid in setup, not necessary for repro
         genGomod = pkgs.writeShellScriptBin "genGomod" ''
           SOURCE_HOME=$(pwd)
           mkdir "$SOURCE_HOME/tmp"
@@ -32,7 +34,6 @@
         '';
       in
       rec {
-        # nix build .#<app>
         packages = flake-utils.lib.flattenTree
           { regen = pkgs.buildGoApplication {
               name = "regen";
