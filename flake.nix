@@ -42,7 +42,7 @@
             };
           };
 
-
+      # This is also not necessary for repro, just a convenience
       devShell =
         pkgs.mkShell {
           buildInputs = [ genGomod ];
