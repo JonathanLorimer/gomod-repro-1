@@ -42,11 +42,14 @@
             };
           };
 
-      # This is also not necessary for repro, just a convenience
-      devShell =
-        pkgs.mkShell {
-          buildInputs = [ genGomod ];
-        };
+        defaultPackage = packages.regen;
+
+
+        # This is also not necessary for repro, just a convenience
+        devShell =
+          pkgs.mkShell {
+            buildInputs = [ genGomod ];
+          };
 
         apps.regen = flake-utils.lib.mkApp { name = "regen"; drv = packages.regen; };
       });
